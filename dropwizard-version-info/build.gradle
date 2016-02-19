@@ -1,0 +1,9 @@
+dependencies {
+    compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
+
+    testCompile "com.google.code.findbugs:annotations:3.0.0"
+    testCompile "io.dropwizard:dropwizard-testing:$dropwizardVersion"
+    testCompile "junit:junit:4.12"
+    testCompile "org.glassfish.jersey.core:jersey-client:2.16"
+    testCompile "org.mockito:mockito-all:1.10.19"
+}

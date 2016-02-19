@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "com.palantir:gradle-baseline-java:$baselineVersion"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintrayVersion"
+    }
+}
+
+plugins {
+    id 'org.inferred.processors' version '1.1.5'
+    id 'com.palantir.git-version' version '0.4.0'
+}
+
+apply plugin: 'java'
+apply plugin: 'com.palantir.baseline-config'
+apply plugin: 'com.palantir.baseline-idea'
+apply plugin: 'com.palantir.baseline-checkstyle'
+apply plugin: 'com.palantir.baseline-findbugs'
+apply from: "${rootDir}/gradle/publish.gradle"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
+
+    testCompile "com.google.code.findbugs:annotations:3.0.0"
+    testCompile "io.dropwizard:dropwizard-testing:$dropwizardVersion"
+    testCompile "junit:junit:4.12"
+    testCompile "org.glassfish.jersey.core:jersey-client:2.16"
+    testCompile "org.mockito:mockito-all:1.10.19"
+}
+
+version gitVersion()
+group 'com.palantir.dropwizard'
+
+sourceCompatibility = 1.8

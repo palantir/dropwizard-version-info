@@ -1,4 +1,5 @@
 [![Circle CI](https://circleci.com/gh/palantir/dropwizard-version-info.svg?style=svg&circle-token=0f0266bd0245635428b61e832c4f59c408e915e6)](https://circleci.com/gh/palantir/dropwizard-version-info)
+ [ ![Download](https://api.bintray.com/packages/palantir/releases/dropwizard-version-info/images/download.svg) ](https://bintray.com/palantir/releases/dropwizard-version-info/_latestVersion)
 
 VersionInfoBundle
 =================

@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/palantir/dropwizard-version-info.svg?style=svg)](https://circleci.com/gh/palantir/dropwizard-version-info)
+[![Circle CI](https://circleci.com/gh/palantir/dropwizard-version-info.svg?style=svg&circle-token=0f0266bd0245635428b61e832c4f59c408e915e6)](https://circleci.com/gh/palantir/dropwizard-version-info)
 
 VersionInfoBundle
 =================

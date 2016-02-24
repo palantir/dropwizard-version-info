@@ -1,9 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'com.palantir.baseline-checkstyle'
+apply plugin: 'com.palantir.baseline-eclipse'
+apply plugin: 'com.palantir.baseline-findbugs'
+apply plugin: 'com.palantir.baseline-idea'
+apply plugin: 'com.palantir.jacoco-coverage'
+
+apply from: "${rootDir}/gradle/publish.gradle"
+
+repositories {
+    jcenter()
+}
+
 dependencies {
     compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
 
-    testCompile "com.google.code.findbugs:annotations:3.0.0"
+    testCompile "com.google.code.findbugs:annotations:$findBugAnnotation"
     testCompile "io.dropwizard:dropwizard-testing:$dropwizardVersion"
-    testCompile "junit:junit:4.12"
-    testCompile "org.glassfish.jersey.core:jersey-client:2.16"
-    testCompile "org.mockito:mockito-all:1.10.19"
+    testCompile "junit:junit:$junitVersion"
+    testCompile "org.glassfish.jersey.core:jersey-client:$jerseyClientVersion"
+    testCompile "org.mockito:mockito-all:$mockitoVersion"
 }

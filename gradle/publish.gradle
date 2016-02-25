@@ -54,7 +54,6 @@ bintray {
     }
 }
 
-
 bintrayUpload.onlyIf {
     System.env.BINTRAY_USER && System.env.BINTRAY_KEY && project.version ==~ /\d+\.\d+\.\d+/
 }

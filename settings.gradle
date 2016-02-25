@@ -1,1 +1,3 @@
 rootProject.name = "dropwizard-version-info"
+
+include "dropwizard-version-info"

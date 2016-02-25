@@ -1,41 +1,34 @@
+# java
+*.class
+
 ### Eclipse ###
 .checkstyle
 .classpath
-.metadata
-.loadpath
 .project
-.settings/
+.settings
+bin/
 
 ### Gradle ###
-.gradle
+.gradle/
 build/
 
 ### Intellij ###
-.idea/
 *.iml
 *.ipr
 *.iws
+.idea/
 out/
 
-### Immutables ###
+### annotation ###
 .factorypath
-generated_src
+.generated
+generated_src/
 
 ### Log Files ###
 *.log
 
 ### Mac OSX + Windows ###
 .DS_Store
-Thumbs.db
-
-### Node ###
-node_modules/
-
-### SublimeText + TextMate ###
-*.sublime-workspace
-*.sublime-project
-*.tmproj
-*.tmproject
 
 ### Testing ###
 .tmp

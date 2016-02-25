@@ -21,6 +21,7 @@ apply plugin: 'com.palantir.baseline-idea'
 apply plugin: 'com.palantir.baseline-checkstyle'
 apply plugin: 'com.palantir.baseline-findbugs'
 apply plugin: 'com.palantir.jacoco-coverage'
+apply from: "${rootDir}/gradle/publish.gradle"
 
 repositories {
     jcenter()

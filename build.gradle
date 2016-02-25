@@ -28,6 +28,6 @@ repositories {
 }
 
 version gitVersion()
-group 'com.palantir.dropwizard'
+group 'com.palantir.dropwizard.version-info'
 
 sourceCompatibility = 1.7

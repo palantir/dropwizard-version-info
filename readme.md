@@ -18,7 +18,7 @@ Using the bundle
     this:
 
     ``` {.sourceCode .none}
-    productVersion: 0.1.0
+    productVersion: <version>
     ```
 
     If the properties file cannot be read (for example, because of an

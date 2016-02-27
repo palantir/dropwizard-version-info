@@ -17,7 +17,7 @@ Using the bundle
     key in the root of your classpath. It should look something like
     this:
 
-    ``` {.sourceCode .none}
+    ```
     productVersion: <version>
     ```
 
@@ -33,7 +33,7 @@ Using the bundle
     (https://github.com/palantir/dropwizard-version-info/releases).
     The dependencies section should look something like this:
 
-    ``` {.sourceCode .none}
+    ```
     dependencies {
       // ... unrelated dependencies omitted ...
 
@@ -45,7 +45,7 @@ Using the bundle
     (or create one if it doesn't already exist). It should look
     something like this:
 
-    ``` {.sourceCode .java}
+    ```
     @Override
     public void initialize(Bootstrap<MyConfiguration> bootstrap) {
         bootstrap.addBundle(new VersionInfoBundle());
@@ -56,6 +56,29 @@ Using the bundle
     is defined by the `rootPath` and `applicationContextPath` in your
     Dropwizard server configuration.
 
+5.  If your application uses [Feign](https://github.com/Netflix/feign) 
+    to build clients, make sure your service interface extends 
+    VersionInfoService interface. The dependencies section for your 
+    `-api` project should look like this:
+    
+    ```
+    dependencies {
+      // ... unrelated dependencies omitted ...
+
+      compile "com.palantir.dropwizard:dropwizard-version-info-api:<VERSION>"
+    }
+    ```
+    Your service interface should look like this:
+ 
+    ```
+    public interface ExampleService extends VersionInfoService {
+        @GET
+        @Path("hello")
+        @Produces(MediaType.TEXT_PLAIN)
+        String hello();
+    }
+    ```
+
 Custom resource path
 --------------------
 
@@ -63,7 +86,7 @@ To load the version.properties file from somewhere else in the
 classpath, pass the path to it as an argument to the bundle's
 constructor:
 
-``` {.sourceCode .java}
+```
 @Override
 public void initialize(Bootstrap<MyConfiguration> bootstrap) {
     bootstrap.addBundle(new VersionInfoBundle("/properties/info.properties"));

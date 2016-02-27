@@ -5,11 +5,8 @@
 package com.palantir.dropwizard.versioninfo;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 /**
  * Tests for {@link VersionInfoResource}.
@@ -17,8 +14,6 @@ import org.junit.rules.ExpectedException;
  * @author sfan
  */
 public final class VersionInfoResourceTests {
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void testVersion() {
@@ -27,9 +22,8 @@ public final class VersionInfoResourceTests {
         assertEquals(version, versionInfoResource.getVersion());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testInvalidVersion() {
-        thrown.expect(IllegalArgumentException.class);
-        assertNull(new VersionInfoResource(null));
+        new VersionInfoResource(null);
     }
 }

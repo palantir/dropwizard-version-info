@@ -1,17 +1,6 @@
-apply plugin: 'java'
-apply plugin: 'com.palantir.baseline-checkstyle'
-apply plugin: 'com.palantir.baseline-eclipse'
-apply plugin: 'com.palantir.baseline-findbugs'
-apply plugin: 'com.palantir.baseline-idea'
-apply plugin: 'com.palantir.jacoco-coverage'
-
-apply from: "${rootDir}/gradle/publish.gradle"
-
-repositories {
-    jcenter()
-}
-
 dependencies {
+    compile project(":dropwizard-version-info-api")
+
     compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
 
     testCompile "com.google.code.findbugs:annotations:$findBugAnnotation"

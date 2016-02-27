@@ -18,11 +18,12 @@ import java.net.URL;
 import java.util.Properties;
 
 /**
- * Bundle to read product version from a .properties and expose it as a resource.
+ * Bundle to read product version from a file and expose it as a resource.
  *
  * @author sfan
  */
 public final class VersionInfoBundle implements Bundle {
+
     private static final String DEFAULT_PATH = "version.properties";
     private static final String UNKNOWN = "unknown";
 
@@ -34,11 +35,13 @@ public final class VersionInfoBundle implements Bundle {
 
     public VersionInfoBundle(String path) {
         checkArgument(!Strings.isNullOrEmpty(path));
+
         this.version = readResource(path);
     }
 
     @Override
     public void initialize(Bootstrap<?> bootstrap) {
+        // do nothing
     }
 
     @Override

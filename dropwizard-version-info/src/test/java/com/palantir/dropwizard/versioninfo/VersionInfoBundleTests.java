@@ -4,27 +4,24 @@
 
 package com.palantir.dropwizard.versioninfo;
 
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.isA;
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import com.google.common.io.Resources;
-import io.dropwizard.jersey.setup.JerseyEnvironment;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import io.dropwizard.Configuration;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-
 import org.hamcrest.core.IsInstanceOf;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
 
@@ -34,33 +31,23 @@ import org.junit.Test;
 public final class VersionInfoBundleTests {
 
     @ClassRule
-    public static final DropwizardAppRule<TestConfig> RULE =
-            new DropwizardAppRule<TestConfig>(TestApp.class, Resources.getResource("test-app-config.yml").getPath());
-
-    private Environment environment;
-    private JerseyEnvironment jerseyEnvironment;
-    private Bootstrap<?> bootstrap;
-
-    @Before
-    public void setUp() {
-        environment = mock(Environment.class);
-        jerseyEnvironment = mock(JerseyEnvironment.class);
-        when(environment.jersey()).thenReturn(jerseyEnvironment);
-        bootstrap = mock(Bootstrap.class);
-    }
+    public static final DropwizardAppRule<Configuration> RULE =
+            new DropwizardAppRule<Configuration>(TestApp.class, Resources.getResource("test-app-config.yml").getPath());
 
     @Test
     public void testAddsVersionInfoResource() {
+        Environment environment = mock(Environment.class, RETURNS_DEEP_STUBS);
+
         VersionInfoBundle versionInfoBundle = new VersionInfoBundle();
-        versionInfoBundle.initialize(bootstrap);
+        versionInfoBundle.initialize(mock(Bootstrap.class));
         versionInfoBundle.run(environment);
-        verify(jerseyEnvironment).register(isA(VersionInfoResource.class));
+        verify(environment.jersey()).register(isA(VersionInfoResource.class));
     }
 
     @Test
     public void testVersionPropertiesFileDoesNotExist() {
         try {
-            assertNull(new VersionInfoBundle("filedoesntexist.properties"));
+            new VersionInfoBundle("filedoesntexist.properties");
             fail();
         } catch (RuntimeException e) {
             assertThat(e.getCause(), IsInstanceOf.instanceOf(IllegalArgumentException.class));
@@ -76,13 +63,9 @@ public final class VersionInfoBundleTests {
         assertEquals(response, "2.0.0");
     }
 
-    @Test
+    @SuppressFBWarnings("NP_NULL_PARAM_DEREF_NONVIRTUAL")
+    @Test(expected = IllegalArgumentException.class)
     public void testInvalidPath() {
-        try {
-            assertNull(new VersionInfoBundle(null));
-            fail();
-        } catch (IllegalArgumentException e) {
-            // expected
-        }
+        new VersionInfoBundle(null);
     }
 }

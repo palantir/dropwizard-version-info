@@ -36,7 +36,7 @@ public final class VersionInfoBundle implements Bundle {
     public VersionInfoBundle(String path) {
         checkArgument(!Strings.isNullOrEmpty(path));
 
-        this.version = readResource(path);
+        this.version = readVersion(path);
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class VersionInfoBundle implements Bundle {
         environment.jersey().register(new VersionInfoResource(this.version));
     }
 
-    private static String readResource(String resourcePath) {
+    public static String readVersion(String resourcePath) {
         Properties properties = new Properties();
         String result;
         try {

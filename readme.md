@@ -27,7 +27,7 @@ Using the bundle
     read, but the `productVersion` key cannot be found, then the version
     will be "unknown".
 
-2.  Add the `com.palantir.dropwizard:dropwizard-version-info:<VERSION>`
+2.  Add the `com.palantir.versioninfo:dropwizard-version-info:<VERSION>`
     dependency to your project's build.gradle file. The most recent
     version number can be found in the [Relase Notes]
     (https://github.com/palantir/dropwizard-version-info/releases).

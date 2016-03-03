@@ -2,7 +2,7 @@
  * Copyright 2015 Palantir Technologies, Inc. All rights reserved.
  */
 
-package com.palantir.dropwizard.versioninfo;
+package com.palantir.versioninfo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;

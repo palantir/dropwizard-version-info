@@ -22,7 +22,7 @@ repositories {
 }
 
 allprojects {
-    group 'com.palantir.dropwizard.version-info'
+    group 'com.palantir.versioninfo'
     version gitVersion()
 }
 

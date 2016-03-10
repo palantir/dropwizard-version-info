@@ -37,7 +37,7 @@ Using the bundle
     dependencies {
       // ... unrelated dependencies omitted ...
 
-      compile "com.palantir.dropwizard:dropwizard-version-info:<VERSION>"
+      compile "com.palantir.versioninfo:dropwizard-version-info:<VERSION>"
     }
     ```
 
@@ -65,7 +65,7 @@ Using the bundle
     dependencies {
       // ... unrelated dependencies omitted ...
 
-      compile "com.palantir.dropwizard:dropwizard-version-info-api:<VERSION>"
+      compile "com.palantir.versioninfo:dropwizard-version-info-api:<VERSION>"
     }
     ```
     Your service interface should look like this:

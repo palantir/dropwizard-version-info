@@ -14,7 +14,7 @@ Using the bundle
 ----------------
 
 1.  Create a version.properties file that contains a `productVersion`
-    key in the root of your classpath. It should look something like
+    key in the <project_dir>/src/main/resources/. It should look something like
     this:
 
     ```
@@ -56,11 +56,11 @@ Using the bundle
     is defined by the `rootPath` and `applicationContextPath` in your
     Dropwizard server configuration.
 
-5.  If your application uses [Feign](https://github.com/Netflix/feign) 
-    to build clients, make sure your service interface extends 
-    VersionInfoService interface. The dependencies section for your 
+5.  If your application uses [Feign](https://github.com/Netflix/feign)
+    to build clients, make sure your service interface extends
+    VersionInfoService interface. The dependencies section for your
     `-api` project should look like this:
-    
+
     ```
     dependencies {
       // ... unrelated dependencies omitted ...
@@ -69,7 +69,7 @@ Using the bundle
     }
     ```
     Your service interface should look like this:
- 
+
     ```
     public interface ExampleService extends VersionInfoService {
         @GET
@@ -92,3 +92,27 @@ public void initialize(Bootstrap<MyConfiguration> bootstrap) {
     bootstrap.addBundle(new VersionInfoBundle("/properties/info.properties"));
 }
 ```
+
+Generating product version from Git
+-----------------------------------
+
+To generate the product version from Git, use the [Git-Version Gradle Plugin](https://github.com/palantir/gradle-git-version).
+You can use the `write-version.gradle` script to write the version from git into the `version.properties` file:
+
+1. In your `build.gradle`, include the `write-version.gradle` dependency:
+
+    ```
+    apply from: "${rootDir}/write-version.gradle"
+    ```
+
+2. Set your compile task to depend on the generation of the version file:
+
+    ```
+    compileJava.dependsOn writeVersion
+    ```
+
+3. Set your `.gitignore` to ignore changes to the `version.properties` file:
+
+    ```
+    *version.properties
+    ```

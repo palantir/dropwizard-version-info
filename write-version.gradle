@@ -1,0 +1,12 @@
+// depends on https://github.com/palantir/gradle-git-version
+
+task writeVersion {
+    description "Writes a version.properties file with the current git version to <project>/src/main/resources/."
+    def contents = "productVersion: " + project.version
+    def resourcesDir = file("$projectDir/src/main/resources")
+    if(!resourcesDir.exists()) {
+        resourcesDir.mkdir()
+    }
+    def versionFile = new File("$resourcesDir/version.properties")
+    versionFile.text = contents
+}

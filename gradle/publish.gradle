@@ -49,7 +49,7 @@ bintray {
         name = 'dropwizard-version-info'
         userOrg = 'palantir'
         licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/palantir/dropwizard-web-logger.git'
+        vcsUrl = 'https://github.com/palantir/dropwizard-version-info.git'
         publications = ['bintray']
     }
 }

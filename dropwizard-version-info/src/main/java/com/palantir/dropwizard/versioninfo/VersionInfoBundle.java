@@ -12,6 +12,9 @@ import com.google.common.io.Resources;
 import io.dropwizard.Bundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -24,6 +27,7 @@ import java.util.Properties;
  */
 public final class VersionInfoBundle implements Bundle {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(VersionInfoBundle.class);
     private static final String DEFAULT_PATH = "version.properties";
     private static final String UNKNOWN = "unknown";
 
@@ -53,15 +57,13 @@ public final class VersionInfoBundle implements Bundle {
 
     public static String readVersion(String resourcePath) {
         Properties properties = new Properties();
-        String result;
         try {
             URL url = Resources.getResource(resourcePath);
             InputStream versionProperties = Resources.asByteSource(url).openStream();
             properties.load(versionProperties);
-            result = properties.getProperty("productVersion", UNKNOWN);
         } catch (IOException | IllegalArgumentException e) {
-            throw new RuntimeException("Could not read properties file '" + resourcePath + "'.", e);
+            LOGGER.warn("Could not read properties file '" + resourcePath + "'.", e);
         }
-        return result;
+        return properties.getProperty("productVersion", UNKNOWN);
     }
 }

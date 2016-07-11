@@ -5,8 +5,6 @@
 package com.palantir.versioninfo;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.mock;
@@ -21,7 +19,6 @@ import io.dropwizard.testing.junit.DropwizardAppRule;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.ClassRule;
 import org.junit.Test;
 
@@ -46,13 +43,8 @@ public final class VersionInfoBundleTests {
 
     @Test
     public void testVersionPropertiesFileDoesNotExist() {
-        try {
-            new VersionInfoBundle("filedoesntexist.properties");
-            fail();
-        } catch (RuntimeException e) {
-            assertThat(e.getCause(), IsInstanceOf.instanceOf(IllegalArgumentException.class));
-            assertEquals(e.getMessage(), "Could not read properties file 'filedoesntexist.properties'.");
-        }
+        String versionInfo = VersionInfoBundle.readVersion("filedoesntexist.properties");
+        assertEquals(versionInfo, "unknown");
     }
 
     @Test

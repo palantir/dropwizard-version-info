@@ -38,6 +38,4 @@ subprojects {
     repositories {
         jcenter()
     }
-
-    sourceCompatibility = 1.7
 }
